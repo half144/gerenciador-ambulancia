@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import L from "leaflet";
 import { Ambulance, EmergencyCall } from "../types";
-import { MapContainer } from "react-leaflet";
 import iconUrl from "leaflet/dist/images/marker-icon.png";
 import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";

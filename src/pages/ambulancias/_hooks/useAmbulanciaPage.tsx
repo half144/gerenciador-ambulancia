@@ -166,6 +166,8 @@ export const useAmbulanciaPage = () => {
         );
       }
 
+      setSelectedAmbulance(null);
+
       return updatedCalls;
     });
   };

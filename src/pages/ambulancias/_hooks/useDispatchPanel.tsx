@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Ambulance, EmergencyCall } from "../types";
 
 interface UseDispatchPanelProps {
@@ -12,7 +11,6 @@ interface UseDispatchPanelProps {
 export const useDispatchPanel = ({
   ambulances,
   selectedCall,
-  selectedAmbulance,
   onAmbulanceSelect,
   handleDispatch,
 }: UseDispatchPanelProps) => {
