@@ -1,10 +1,4 @@
-import {
-  Settings,
-  HelpCircle,
-  Menu,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { Menu, ChevronLeft, ChevronRight } from "lucide-react";
 
 import { NavLink } from "react-router";
 import { useState } from "react";
