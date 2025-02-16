@@ -18,11 +18,6 @@ const navigationData = [
   },
 ];
 
-const footerLinks = [
-  { href: "#", icon: Settings, label: "Settings" },
-  { href: "#", icon: HelpCircle, label: "Help" },
-];
-
 export default function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
