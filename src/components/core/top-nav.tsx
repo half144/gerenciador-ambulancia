@@ -2,6 +2,7 @@ import { Bell, ChevronRight, User, Settings, LogOut } from "lucide-react";
 import { NavLink, useLocation } from "react-router";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { cn } from "../../lib/utils";
+import { mainNavItems, routeMap } from "../../config/navigation";
 
 interface BreadcrumbItem {
   label: string;
@@ -16,21 +17,6 @@ interface Notification {
   read: boolean;
 }
 
-interface NavItem {
-  label: string;
-  href: string;
-  disabled?: boolean;
-}
-
-const routeMap: Record<string, string> = {
-  dashboard: "Dashboard",
-  ambulancias: "Ambulâncias",
-  pacientes: "Pacientes",
-  hospitais: "Hospitais",
-  relatorios: "Relatórios",
-  equipes: "Equipes",
-};
-
 export default function TopNav() {
   const location = useLocation();
   const pathSegments = location.pathname.split("/").filter(Boolean);
@@ -41,15 +27,6 @@ export default function TopNav() {
       label: routeMap[segment] || segment,
       href: "/" + pathSegments.slice(0, index + 1).join("/"),
     })),
-  ];
-
-  const navItems: NavItem[] = [
-    { label: "Dashboard", href: "/" },
-    { label: "Ambulâncias", href: "/ambulancias" },
-    { label: "Pacientes", href: "/pacientes", disabled: true },
-    { label: "Hospitais", href: "/hospitais", disabled: true },
-    { label: "Relatórios", href: "/relatorios", disabled: true },
-    { label: "Equipes", href: "/equipes", disabled: true },
   ];
 
   const notifications: Notification[] = [
@@ -91,20 +68,16 @@ export default function TopNav() {
 
         {/* Navigation Links */}
         <div className="hidden lg:flex items-center space-x-6">
-          {navItems.map((item) => (
+          {mainNavItems.map((item) => (
             <NavLink
               key={item.label}
               to={item.href}
               className={cn(
                 "text-primary-foreground/90 hover:text-primary-foreground transition-colors text-sm",
-                item.disabled &&
-                  "opacity-50 pointer-events-none cursor-not-allowed"
+                item.disabled && "pointer-events-none opacity-50"
               )}
             >
               {item.label}
-              {item.disabled && (
-                <span className="ml-1 text-xs">(em breve)</span>
-              )}
             </NavLink>
           ))}
         </div>

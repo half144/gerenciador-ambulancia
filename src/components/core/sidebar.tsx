@@ -1,29 +1,20 @@
 import {
-  BarChart2,
-  Building2,
-  Folder,
   Settings,
   HelpCircle,
   Menu,
-  Home,
-  Ambulance,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
 
 import { NavLink } from "react-router";
 import { useState } from "react";
+import { mainNavItems, footerNavItems } from "../../config/navigation";
+import { cn } from "../../lib/utils";
 
 const navigationData = [
   {
-    category: "Overview",
-    items: [
-      { href: "ambulancias", icon: Ambulance, label: "Ambulâncias" },
-      { href: "#", icon: Home, label: "Dashboard" },
-      { href: "#", icon: BarChart2, label: "Analytics" },
-      { href: "#", icon: Building2, label: "Organization" },
-      { href: "#", icon: Folder, label: "Projects" },
-    ],
+    category: "Menu",
+    items: mainNavItems,
   },
 ];
 
@@ -43,17 +34,23 @@ export default function Sidebar() {
   function NavItem({
     href,
     icon: Icon,
+    disabled,
     children,
   }: {
     href: string;
     icon: any;
+    disabled?: boolean;
     children: React.ReactNode;
   }) {
     return (
       <NavLink
         to={href}
         onClick={handleNavigation}
-        className="flex items-center px-3 py-2 text-sm rounded-md transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-[#1F1F23]"
+        className={cn(
+          "flex items-center px-3 py-2 text-sm rounded-md transition-colors",
+          "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-[#1F1F23]",
+          disabled && "pointer-events-none opacity-50"
+        )}
       >
         <Icon className="h-4 w-4 flex-shrink-0" />
         {!isCollapsed && <span className="ml-3">{children}</span>}
@@ -115,6 +112,7 @@ export default function Sidebar() {
                         key={itemIndex}
                         href={item.href}
                         icon={item.icon}
+                        disabled={item.disabled}
                       >
                         {item.label}
                       </NavItem>
@@ -127,8 +125,13 @@ export default function Sidebar() {
 
           <div className="px-4 py-4 border-t border-gray-200 dark:border-[#1F1F23]">
             <div className="space-y-1">
-              {footerLinks.map((item, index) => (
-                <NavItem key={index} href={item.href} icon={item.icon}>
+              {footerNavItems.map((item, index) => (
+                <NavItem
+                  key={index}
+                  href={item.href}
+                  icon={item.icon}
+                  disabled={item.disabled}
+                >
                   {item.label}
                 </NavItem>
               ))}
